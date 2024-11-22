@@ -1,101 +1,143 @@
 
-.loginform-container{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login-container{
     width: 100%;
     height: 100vh;
+    overflow: scroll;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid red;
-    overflow: scroll;
+    background: rgb(203,233,235);
+    background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%);
 }
-/* .row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container{
+    text-align: center;
+    width: 100%;
+    height: 90vh;
+    margin-top: 20px;
 }
- .col-lg-4 img{
-   width: 300px;
-   height: 400px;
-   object-fit: cover;
-   background-position: center;
+.col-lg-6 {
+    margin-top: 30px;
+
 }
- 
+.hotelimg-container{
+    width: 100%
+}
+.hotelimg-container img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+}
 .form-container{
-    border-radius: 10px;
-    width: 450px;
-    border: 2px solid rgb(0, 0, 0);
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    margin: 10px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 20px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
-.form-container img{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
-
-
-.form-container h2{
-    text-align: center;
-    margin: 15px 0px;
-    font-size: 30px;
-    text-transform: uppercase;
-    color: crimson;
+form span{
+    font-size: 20px;
+    margin: 10px 0px;
 }
 .input-container{
-    margin: 5px auto;
-    width: 100%;
+    width: 90%;
+    margin: 8px auto;
 }
-input{
-    width: 100%;
-    padding: 8px;
-    font-size: 15px;
-    color: black;
-    margin: 6px auto;
-    border: 1px solid;
-    outline: none;
+.input-container label{
+    font-size: 20px;
 }
-.popbtn{
-    width: 80%;
-    margin: auot;
+.input-container input{
+    background: #d3e9e7; 
 }
-.forget-pass a{
-    text-decoration: none;
-    text-align: center;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+.input-container input:focus{
+    background: #aed3d0; 
 }
 
-.login-container button{
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    width: 50%;
-    border: none;
-    background-color: green;
+.gender{
+    font-size: 20px;
 }
-.forgetpass a{
-    color: blue;
-    margin-left: 150px;
-    text-decoration: none;
+.radio-label{
+    margin-top: 3px;
 }
-.create{
-    color: white;
+.radio-input{
+    margin: 0px 8px;
 }
-.create a{
-    margin-top: 15px;
-    color: blue;
-    text-decoration: none;
+.submit-container{
+    background-color: #aed3d0; 
+    font-size: 20px;
 }
-@media screen and (max-width:500px) {
-    .form-container{
-        width: 90% ;
-        border-radius: 8px;
+.submit-container:hover{
+    background-color: #aed3d0; 
+    font-size: 20px;
+}
+
+@media screen and (max-width: 700px){
+    .hotelimg-container img{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        background-position: center;
+        background-size: cover;
     }
-   
-} */
+    .input-container label{
+        font-size: 16px;
+    }
+    
+}
+.error{
+    font-size: 15px;
+    color: red;
+}
 
-/* main container */
+.radio-label {
+    position: relative;
+    padding: 8px 25px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .radio-input {
+    display: none; 
+  }
+
+  .custom-radio {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: translateY(-50%);
+    width: 20px; 
+    height: 20px; 
+    border-radius: 50%;
+    border: 2px solid #3ac5d7; 
+    background: white; 
+    transition: background 0.3s;
+  }
+  
+  .radio-input:checked + .custom-radio {
+    background: #22a690; 
+  }
+  
+  .radio-input:checked + .custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%;
+    background: #3ab0b5; 
+    transform: translate(-50%, -50%); 
+  }
+  .alert{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }

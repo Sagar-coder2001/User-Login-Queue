@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.dashboard-container{
+    width: 100%;
+    overflow: auto;
+    margin-top: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.dashboard {
+    width: 100%;
+    max-width: 750px;
+    background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: auto;
+    background: rgba(94, 212, 214, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  }
+  .navigation {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sandtime p {
+    font-size: 23px;
+    margin-left: 10px;
+  }
+  .sandclock img {
+    width: 60px;
+    height: 60px;
+  }
+ .show-queue{
+    text-align: center;
+    margin-top: 20px;
+ }
+
+ .show-queue span{
+    background-color: #aed3d0; 
+    padding: 8px 10px;
+    font-size: 19px;
+    border-radius: 10px;
+ }
+  
+  
+  
+  .game-queue {
+    margin-top: 30px;
+  }
+  
+  .game-instruction {
+    padding: 5px;
+  }
+  
+  .game-instruction h4 {
+    font-size: 23px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  
+  .game-icons {
+    text-align: center;
+    margin: 0px auto;
+    padding: 10px;
+    margin: 25px;
+    box-shadow: 0px 0px 1px black;
+    background-color: rgb(203, 226, 235);
+    border-radius: 5px;
+  }
+  
+  .game-icons h4 {
+    font-size: 20px;
+  }
+  .game-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .game-icon img {
+    width: 70px;
+    height: 70px;
+    margin: 8px;
+  }
+
+  .image-animation{
+    border: 1px solid;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  .images img{
+    width: 40px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    background-position: center;
+  }
+
+  
