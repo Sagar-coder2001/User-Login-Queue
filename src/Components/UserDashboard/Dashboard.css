@@ -10,27 +10,32 @@
     padding: 10px;
     display: flex;
     justify-content: center;
+    background:rgb(21, 52, 72);
 }
 .dashboard {
     width: 100%;
     max-width: 750px;
-    background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%);
+    /* background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%); */
     scrollbar-width: none;
     -ms-overflow-style: none;
     height: auto;
-    background: rgba(94, 212, 214, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: white;
 
   }
   .navigation {
-    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 8px;
   }
   .sandtime p {
-    font-size: 23px;
-    margin-left: 10px;
+    font-size: 21px;
+    margin-top: 10px;
+  }
+  .sandtime span{
+    font-size: 18px;
   }
   .sandclock img {
     width: 60px;
@@ -42,14 +47,13 @@
  }
 
  .show-queue span{
-    background-color: #aed3d0; 
+    background-color: rgb(148, 137, 121); 
     padding: 8px 10px;
     font-size: 19px;
     border-radius: 10px;
+    
  }
-  
-  
-  
+
   .game-queue {
     margin-top: 30px;
   }
@@ -71,7 +75,7 @@
     padding: 10px;
     margin: 25px;
     box-shadow: 0px 0px 1px black;
-    background-color: rgb(203, 226, 235);
+    background-color: rgb(148, 137, 121);
     border-radius: 5px;
   }
   

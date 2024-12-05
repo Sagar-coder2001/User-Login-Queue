@@ -7,11 +7,11 @@ const Navbar = () => {
         <header>
             <div className="nav">
                 <div className="left">
-                    <img src="https://png.pngtree.com/png-vector/20220509/ourmid/pngtree-company-logo-design-trademark-design-creative-logo-png-image_4569380.png" alt="" />
                     <a href="">Company Name</a>
                 </div>
                 <div className="right">
-                  
+                <img src="https://png.pngtree.com/png-vector/20220509/ourmid/pngtree-company-logo-design-trademark-design-creative-logo-png-image_4569380.png" alt="" />
+
                 </div>
             </div>
 

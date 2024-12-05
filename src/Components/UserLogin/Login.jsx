@@ -3,6 +3,7 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import data from '../Data.json'
+import userimg from '../../assets/user.jpg'
 
 let hotelbg = `${data.hotelimg}`;
 
@@ -19,12 +20,15 @@ const Login = () => {
   const [submited, setSubmited] = useState(null);
   const navigate = useNavigate(); // Initialize useNavigate for routing
   const [hotelid, setHotelid] = useState();
+  const [showerr, setShowerr] = useState(false);
 
   const validateForm = () => {
     let formErrors = {};
     if (!userdetails.name) formErrors.name = 'Name is required';
     if (!userdetails.contactno) formErrors.contactno = 'Contact number is required';
     if (!userdetails.peoples) formErrors.peoples = 'Number of peoples is required';
+    if (userdetails.peoples > 100) formErrors.peoples = 'Number of is below 100';
+    if (userdetails.peoples < 0) formErrors.peoples = 'Number of is greater then 0';
     if (!userdetails.gender) formErrors.gender = 'Gender is required';
     if (!userdetails.room) formErrors.room = 'Room selection is required';
 
@@ -77,6 +81,10 @@ const Login = () => {
         navigate('/dashboard', { state: { hotelid, contactno: userdetails.contactno } });
       }
 
+      if (result.Status === false) {
+        setShowerr(true);
+      }
+
       // Resetting form
       setUSerDetails({
         name: '',
@@ -103,7 +111,22 @@ const Login = () => {
       <div className="login-container">
         <Navbar />
         <div className="container">
-          <div className="row">
+          {
+            showerr ? (
+              <>
+                <div>
+                  <div className="showerr">
+                    <div>
+                      Invalid Credentails
+                    </div>
+                    <button onClick={() => setShowerr(false)} className='mt-2'>ok</button>
+                  </div>
+                </div>
+
+              </>
+            ) 
+            :
+            <div className="row">
             <div className="col-lg-6">
               <div className="hotelimg-container">
                 <img
@@ -115,8 +138,12 @@ const Login = () => {
             <div className="col-lg-6">
               <div className="form-container">
                 <form onSubmit={saveDetails}>
+                  <div className='upperform'>
+                  <img src= {userimg} alt="" />
                   <span style={{ fontSize: '30px', margin: '60px 0px' }}>Registration</span>
+                  </div>
                   <div className='input-container text-start'>
+                    <i className="fa-solid fa-user" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
                     <label htmlFor="name">Name</label>
                     <input
                       type='text'
@@ -124,10 +151,12 @@ const Login = () => {
                       name='name'
                       value={userdetails.name}
                       onChange={handleChange}
+                    
                     />
                     {errors.name && <span className="error">{errors.name}</span>}
                   </div>
                   <div className='input-container text-start'>
+                  <i class="fa-solid fa-phone" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
                     <label htmlFor="contactno">Contact No</label>
                     <input
                       type='tel'
@@ -140,6 +169,7 @@ const Login = () => {
                     {errors.contactno && <span className="error">{errors.contactno}</span>}
                   </div>
                   <div className='input-container text-start'>
+                  <i className="fa-solid fa-users" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
                     <label htmlFor="peoples">No Of Peoples</label>
                     <input
                       type='number'
@@ -147,6 +177,7 @@ const Login = () => {
                       name='peoples'
                       value={userdetails.peoples}
                       onChange={handleChange}
+                      style={{color: 'white'}}
                     />
                     {errors.peoples && <span className="error">{errors.peoples}</span>}
                   </div>
@@ -219,7 +250,7 @@ const Login = () => {
                     {errors.room && <span className="error">{errors.room}</span>}
                   </div>
 
-                  <button className="submit-container btn w-50 mt-3" type='submit'>Submit</button>
+                  <button className="submit-container btn w-50 mt-3" type='submit'><strong>Submit</strong></button>
                 </form>
                 {
                   submited && (
@@ -232,6 +263,8 @@ const Login = () => {
               </div>
             </div>
           </div>
+          }
+         
         </div>
       </div>
     </div>

@@ -11,18 +11,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(203,233,235);
-    background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%);
+    background:rgb(21, 52, 72);
+    /* background: radial-gradient(circle, rgba(203,233,235,1) 0%, rgba(244,243,243,1) 26%, rgba(241,250,238,1) 100%); */
 }
 .container{
     text-align: center;
     width: 100%;
     height: 90vh;
-    margin-top: 20px;
 }
 .col-lg-6 {
     margin-top: 30px;
-
+}
+.upperform img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0px 20px 8px 0px;
+    object-fit: cover;
+    background-position: center;
 }
 .hotelimg-container{
     width: 100%
@@ -41,6 +47,26 @@
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    color: white;
+    margin-bottom: 20px;
+}
+.showerr{
+    position: absolute; 
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    padding: 10px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 20px;
+    border-radius: 4px;
+}
+.showerr button{
+    padding: 4px 10px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    background-color: rgb(148, 137, 121);
 }
 form span{
     font-size: 20px;
@@ -52,30 +78,37 @@ form span{
 }
 .input-container label{
     font-size: 20px;
+    margin-bottom: 4px;
 }
 .input-container input{
-    background: #d3e9e7; 
+    background-color: rgba(255, 255, 255, 0.1) ; 
+    color: white;
+    border: none;
+    outline: none;
 }
 .input-container input:focus{
-    background: #aed3d0; 
+    background-color: rgba(255, 255, 255, 0.1) ;
+    color: white;
 }
-
 .gender{
     font-size: 20px;
 }
 .radio-label{
-    margin-top: 3px;
+    margin-top: 2px;
 }
 .radio-input{
     margin: 0px 8px;
 }
 .submit-container{
-    background-color: #aed3d0; 
+    background-color: rgb(148, 137, 121); 
     font-size: 20px;
+    color: white;
+    
 }
 .submit-container:hover{
-    background-color: #aed3d0; 
+    background-color: rgb(223, 208, 184); 
     font-size: 20px;
+    color: black;
 }
 
 @media screen and (max-width: 700px){
@@ -98,7 +131,7 @@ form span{
 
 .radio-label {
     position: relative;
-    padding: 8px 25px;
+    padding: 4px 25px;
     cursor: pointer;
     font-size: 18px;
   }
@@ -106,7 +139,6 @@ form span{
   .radio-input {
     display: none; 
   }
-
   .custom-radio {
     position: absolute;
     left: 0;
@@ -115,13 +147,13 @@ form span{
     width: 20px; 
     height: 20px; 
     border-radius: 50%;
-    border: 2px solid #3ac5d7; 
+    border: 2px solid rgb(148, 137, 121); 
     background: white; 
     transition: background 0.3s;
   }
   
   .radio-input:checked + .custom-radio {
-    background: #22a690; 
+    background: rgb(148, 137, 121); 
   }
   
   .radio-input:checked + .custom-radio::after {
@@ -132,7 +164,7 @@ form span{
     width: 10px; 
     height: 10px; 
     border-radius: 50%;
-    background: #3ab0b5; 
+    background: rgb(148, 137, 121); 
     transform: translate(-50%, -50%); 
   }
   .alert{

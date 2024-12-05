@@ -22,71 +22,74 @@ const Dashboard = () => {
     const [Queuemessage, setQueuemessage] = useState('');
     const [genderQueue, setGenderQueue] = useState([]); // To store genders for animation
     const [waitingtime, setWaitingTime] = useState('')
+    
 
     useEffect(() => {
         console.log(hotelid);
         const eventSource = new EventSource(`http://192.168.1.25/Queue/queue.php?contact=${contactno}&hotel_id=${hotelid}`);
-
+    
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
             setQueuemessage(newMessage.Message);
-
+    
             if (newMessage.Gender) {
                 // Add gender to the queue when new message comes
                 setGenderQueue(prevQueue => [...prevQueue, newMessage.Gender]);
             }
-
+    
             if (newMessage.Status === false) {
                 eventSource.close();
             }
-
+    
             console.log(newMessage);
 
+    
             // Get current time
             const d = new Date();
             const currentHours = d.getHours();
             const currentMinutes = d.getMinutes();
             const currentSeconds = d.getSeconds();
             console.log(`Current Time: ${currentHours}:${currentMinutes}:${currentSeconds}`);
-
+    
             // Assuming waitingTime is in HH:MM:SS format
-            const waitingTime = newMessage.Waiting_Time; // e.g., "16:31:04"
-            if (waitingTime === null) {
-                setWaitingTime('null')
+            let waitingTime = newMessage.Waiting_Time; // e.g., "16:31:04"
+            if (waitingTime && waitingTime.includes(':')) { // Check if waitingTime is valid and in the expected format
+                const [waitHours, waitMinutes, waitSeconds] = waitingTime.split(':').map(Number);
+    
+                // Convert waiting time to total seconds
+                const totalWaitingSeconds = waitHours * 3600 + waitMinutes * 60 + waitSeconds;
+    
+                // Convert current time to total seconds
+                const totalCurrentSeconds = currentHours * 3600 + currentMinutes * 60 + currentSeconds;
+    
+                if (totalCurrentSeconds >= totalWaitingSeconds) {
+                    setWaitingTime('Wait For a While');
+                }
+                else {
+                    // Subtract waiting time from current time
+                    const newTotalSeconds = totalCurrentSeconds - totalWaitingSeconds;
+    
+                    const absTotalSeconds = Math.abs(newTotalSeconds);
+    
+                    // Convert back to hours and minutes
+                    const newHours = String(Math.floor((absTotalSeconds / 3600) % 24)).padStart(2, '0'); // wrap around at 24
+                    const newMinutes = String(Math.floor((absTotalSeconds % 3600) / 60)).padStart(2, '0');
+                    const newSeconds = String(absTotalSeconds % 60).padStart(2, '0');
+    
+                    console.log(`New Time after subtracting waiting time: ${newHours}:${newMinutes}:${newSeconds}`);
+    
+                    setWaitingTime(`${newHours}:${newMinutes}:${newSeconds}`);
+                }
+            } else {
+                setWaitingTime('Wait For A While');
             }
-            const [waitHours, waitMinutes, waitSeconds] = waitingTime.split(':').map(Number);
-
-            // Convert waiting time to total seconds
-            const totalWaitingSeconds = waitHours * 3600 + waitMinutes * 60 + waitSeconds;
-
-            // Convert current time to total seconds
-            const totalCurrentSeconds = currentHours * 3600 + currentMinutes * 60 + currentSeconds;
-
-            if (totalCurrentSeconds >= totalWaitingSeconds) {
-                setWaitingTime('Your Expected Time Is Over');
-            }
-            else {
-                // Subtract waiting time from current time
-                const newTotalSeconds = totalCurrentSeconds - totalWaitingSeconds;
-
-                const absTotalSeconds = Math.abs(newTotalSeconds);
-
-                // Convert back to hours and minutes
-                const newHours = String(Math.floor((absTotalSeconds / 3600) % 24)).padStart(2, '0'); // wrap around at 24
-                const newMinutes = String(Math.floor((absTotalSeconds % 3600) / 60)).padStart(2, '0');
-                const newSeconds = String(absTotalSeconds % 60).padStart(2, '0');
-
-                console.log(`New Time after subtracting waiting time: ${newHours}:${newMinutes}:${newSeconds}`);
-
-                setWaitingTime(`${newHours}:${newMinutes}:${newSeconds}`);
-            }
-
         };
-
+    
         return () => {
             eventSource.close();
         };
-    }, []);
+    }, [hotelid, contactno]); // Add dependencies to re-run effect when they change
+    
 
     return (
         <div>
@@ -96,7 +99,7 @@ const Dashboard = () => {
                 <div className="dashboard">
                     <div className="navigation">
                         <div className="sandtime">
-                            <p><strong>Waiting Time : </strong>{waitingtime}</p>
+                            <p><strong>Waiting Time : </strong> <span>{waitingtime}</span></p>
                         </div>
                         <div className="sandclock">
                             <img src={sandtimer} alt="Sand Timer" />
@@ -144,6 +147,8 @@ const Dashboard = () => {
                                 <img src={gameicon4} alt="Game Icon 4" />
                                 <img src={gameicon5} alt="Game Icon 5" />
                                 <img src={gameicon6} alt="Game Icon 6" />
+                                <img src={gameicon4} alt="Game Icon 4" />
+                                <img src={gameicon4} alt="Game Icon 4" />
                             </div>
                         </div>
                     </div>
