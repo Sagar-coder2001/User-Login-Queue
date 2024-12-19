@@ -124,147 +124,99 @@ const Login = () => {
                 </div>
 
               </>
-            ) 
-            :
-            <div className="row">
-            <div className="col-lg-6">
-              <div className="hotelimg-container">
-                <img
-                  src='https://img.freepik.com/free-photo/swimming-pool_74190-1977.jpg?t=st=1728582687~exp=1728586287~hmac=929ff3da9e1e2cf6a5f7ce181ad1b0857151c99452110578beae3d5a7d28dbe4&w=740'
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="form-container">
-                <form onSubmit={saveDetails}>
-                  <div className='upperform'>
-                  <img src= {userimg} alt="" />
-                  <span style={{ fontSize: '30px', margin: '60px 0px' }}>Registration</span>
-                  </div>
-                  <div className='input-container text-start'>
-                    <i className="fa-solid fa-user" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type='text'
-                      className="form-control"
-                      name='name'
-                      value={userdetails.name}
-                      onChange={handleChange}
-                    
+            )
+              :
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="hotelimg-container">
+                    <img
+                      src='https://img.freepik.com/free-photo/swimming-pool_74190-1977.jpg?t=st=1728582687~exp=1728586287~hmac=929ff3da9e1e2cf6a5f7ce181ad1b0857151c99452110578beae3d5a7d28dbe4&w=740'
+                      alt=""
                     />
-                    {errors.name && <span className="error">{errors.name}</span>}
                   </div>
-                  <div className='input-container text-start'>
-                  <i class="fa-solid fa-phone" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
-                    <label htmlFor="contactno">Contact No</label>
-                    <input
-                      type='tel'
-                      className="form-control"
-                      name='contactno'
-                      maxLength={10}
-                      value={userdetails.contactno}
-                      onChange={handleChange}
-                    />
-                    {errors.contactno && <span className="error">{errors.contactno}</span>}
-                  </div>
-                  <div className='input-container text-start'>
-                  <i className="fa-solid fa-users" style={{marginRight:'7px', color:'#b5a68f', fontSize:'20px'}}></i>
-                    <label htmlFor="peoples">No Of Peoples</label>
-                    <input
-                      type='number'
-                      className="form-control"
-                      name='peoples'
-                      value={userdetails.peoples}
-                      onChange={handleChange}
-                      style={{color: 'white'}}
-                    />
-                    {errors.peoples && <span className="error">{errors.peoples}</span>}
-                  </div>
-                  <div className='input-container text-start'>
-                    <span className='gender'>Gender</span> <br />
-                    <label className="radio-label">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="male"
-                        checked={userdetails.gender === 'male'}
-                        onChange={handleChange}
-                        className="radio-input"
-                      />
-                      <span className="custom-radio"></span>
-                      Male
-                    </label>
-                    <label className="radio-label">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="female"
-                        checked={userdetails.gender === 'female'}
-                        onChange={handleChange}
-                        className="radio-input"
-                      />
-                      <span className="custom-radio"></span>
-                      Female
-                    </label>
-                    <label className="radio-label">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="other"
-                        checked={userdetails.gender === 'other'}
-                        onChange={handleChange}
-                        className="radio-input"
-                      />
-                      <span className="custom-radio"></span>
-                      Other
-                    </label><br></br>
-                    {errors.gender && <span className="error">{errors.gender}</span>}
-                  </div>
-                  <div className="input-container text-start">
-                    <span className='gender'>Rooms</span> <br />
-                    <label className="radio-label">
-                      <input
-                        type="radio"
-                        name="room"
-                        value="1"
-                        checked={userdetails.room === '1'}
-                        onChange={handleChange}
-                        className="radio-input"
-                      />
-                      <span className="custom-radio"></span>
-                      AC
-                    </label>
-                    <label className="radio-label">
-                      <input
-                        type="radio"
-                        name="room"
-                        value="0"
-                        checked={userdetails.room === '0'}
-                        onChange={handleChange}
-                        className="radio-input"
-                      />
-                      <span className="custom-radio"></span>
-                      Non AC
-                    </label><br></br>
-                    {errors.room && <span className="error">{errors.room}</span>}
-                  </div>
+                </div>
+                <div className="col-lg-6">
+                  <div className="form-container">
+                    <form onSubmit={saveDetails}>
+                      <div className='upperform'>
+                        <img src={userimg} alt="" />
+                        <span style={{ fontSize: '30px', margin: '60px 0px' }}>Registration</span>
+                      </div>
+                      <div className='input-container text-start'>
+                        <i className="fa-solid fa-user" style={{ marginRight: '7px', color: '#b5a68f', fontSize: '20px' }}></i>
+                        <label htmlFor="name">Name</label>
+                        <input
+                          type='text'
+                          className="form-control"
+                          name='name'
+                          value={userdetails.name}
+                          onChange={handleChange}
 
-                  <button className="submit-container btn w-50 mt-3" type='submit'><strong>Submit</strong></button>
-                </form>
-                {
-                  submited && (
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                  )
-                }
+                        />
+                        {errors.name && <span className="error">{errors.name}</span>}
+                      </div>
+                      <div className='input-container text-start'>
+                        <i className="fa-solid fa-phone" style={{ marginRight: '7px', color: '#b5a68f', fontSize: '20px' }}></i>
+                        <label htmlFor="contactno">Contact No</label>
+                        <input
+                          type='tel'
+                          className="form-control"
+                          name='contactno'
+                          maxLength={10}
+                          value={userdetails.contactno}
+                          onChange={handleChange}
+                        />
+                        {errors.contactno && <span className="error">{errors.contactno}</span>}
+                      </div>
+                      <div className='input-container text-start'>
+                        <i className="fa-solid fa-users" style={{ marginRight: '7px', color: '#b5a68f', fontSize: '20px' }}></i>
+                        <label htmlFor="peoples">No Of Peoples</label>
+                        <input
+                          type='number'
+                          className="form-control"
+                          name='peoples'
+                          value={userdetails.peoples}
+                          onChange={handleChange}
+                          style={{ color: 'white' }}
+                        />
+                        {errors.peoples && <span className="error">{errors.peoples}</span>}
+                      </div>
+                      <div className='input-container text-start'>
+                        <span className='gender'>Gender</span> <br />
+                        <select name="gender" value={userdetails.gender} style={{backgroundColor: 'grey'}} onChange={handleChange} className="form-control">
+                          <option value="">Select Gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
+                        {errors.gender && <span className="error">{errors.gender}</span>}
+                      </div>
+                      <div className="input-container text-start">
+                        <span className='gender'>Rooms</span> <br />
+                        <select name="room" value={userdetails.room} onChange={handleChange} style={{backgroundColor: 'grey'}} className="form-control">
+                          <option value="">Select Room Type</option>
+                          <option value="1">AC</option>
+                          <option value="0">Non AC</option>
+                        </select>
+
+                        {errors.room && <span className="error">{errors.room}</span>}
+                      </div>
+
+                      <button className="submit-container btn w-50 mt-3" type='submit'><strong>Submit</strong></button>
+                    </form>
+                    {
+                      submited && (
+                        <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                      )
+                    }
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
           }
-         
+
         </div>
       </div>
     </div>
