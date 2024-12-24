@@ -10,8 +10,12 @@
     padding: 5px;
     display: flex;
     justify-content: center;
-    background:rgb(21, 52, 72);
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('../../assets/obg.gif');
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-size: cover;
     /* height: 100vh; */
+    min-height: 100vh;
 }
 .dashboard {
     width: 100%;
@@ -20,8 +24,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     height: auto;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* background: rgba(255, 255, 255, 0.1);*/
+     box-shadow: 0 0px 5px rgb(73, 7, 7);
     color: white;
 
   }
@@ -48,7 +52,7 @@
  }
 
  .show-queue span{
-    background-color: rgb(148, 137, 121); 
+  background-color: rgb(81 9 9);
     padding: 8px 10px;
     font-size: 19px;
     border-radius: 10px;
@@ -61,7 +65,7 @@
   background-color: transparent;
  }
   .game-queue {
-    margin-top: 30px;
+    margin-top: 20px;
   }
   
   .game-instruction {
@@ -74,14 +78,13 @@
     text-align: center;
   }
 
-  
   .game-icons {
     text-align: center;
     margin: 0px auto;
     padding: 10px;
     margin: 25px;
-    box-shadow: 0px 0px 1px black;
-    background-color: rgb(148, 137, 121);
+    box-shadow: 0px 0px 6px black;
+    backdrop-filter: blur(10px);
     border-radius: 5px;
   }
   
@@ -115,20 +118,29 @@
     background-position: center;
   }
   .queue-image{
-    width: 40px;
+    width:25px;
   }
-.lottie-container{
-  text-align: center;
-  border: 1px solid;
-  width: 90%;
-  margin: 20px auto ;
-  overflow: hidden;
-}
-.queue-item {
-  display: inline-block;   /* Makes each item appear next to each other in a row */
-  text-align: center;      /* Centers the image and text */
-  margin: 5px;            /* Adds spacing between images */
-}
-.highlighted {
-  /* box-shadow: 0px 0px 5px ; */
-}
+  .lottie-container {
+    text-align: center;
+  width: 85%;
+    margin: 30px auto 0px;
+    overflow-x: auto;  /* Enable horizontal scrolling */
+    overflow-y: hidden;  /* Disable vertical scrolling */
+    height: 140px; 
+    white-space: nowrap; /* Prevent wrapping of images */
+    display: flex;
+    flex-wrap: nowrap;  /* Ensure items stay on one line */
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+  }
+  .queue-images-container {
+    display: inline-flex; /* Inline-flex ensures no wrapping */
+    flex-wrap: nowrap; /* Ensure no wrapping of images */
+  }
+  .queue-item {
+    display: inline-block;  /* Makes each item appear next to each other */
+    text-align: center;     /* Centers the image and text */
+    margin: 5px;            /* Adds spacing between images */
+    flex-shrink: 0;        
+  }
