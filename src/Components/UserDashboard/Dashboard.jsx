@@ -12,7 +12,6 @@ import gameicon3 from '../../assets/game icon 3.png';
 import gameicon4 from '../../assets/game icon 4.png';
 import gameicon5 from '../../assets/game icon 5.png';
 import gameicon6 from '../../assets/game icon 6.png';
-// import { ToastContainer, toast } from 'react-toastify';
 import animation from '../../assets/peoples.png'
 import calling from '../../assets/calling.gif'
 import thankanimation from '../../assets/Thank You.gif'
@@ -32,7 +31,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         console.log(hotelid);
-        const eventSource = new EventSource(`http://192.168.1.25/Queue/queue.php?contact=${contactno}&hotel_id=${hotelid}`);
+        const eventSource = new EventSource(`http://192.168.1.5/Queue/queue.php?contact=${contactno}&hotel_id=${hotelid}`);
 
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
@@ -90,12 +89,6 @@ const Dashboard = () => {
     }, [hotelid, contactno]); // Add dependencies to re-run effect when they change
 
 
-
-
-
-
-
-
     // const renderQueueImages = () => {
     //     let images = [];
 
@@ -115,22 +108,12 @@ const Dashboard = () => {
     return (
         <div>
             <Navbar />
-            {/* <ToastContainer
-                position="top-right"
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={true}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            /> */}
             <div className="dashboard-container">
                 <div className="dashboard">
                     <div className="navigation">
                         <div className="sandtime">
                             <p><strong>Waiting Time : </strong> <span>{waitingtime}</span></p>
+
                         </div>
                         <div className="sandclock">
                             <img src={Queuemessage === "Please Visit To Receptionist." ? sandtimernew : sandtimer} alt="Sand Timer"
@@ -175,7 +158,7 @@ const Dashboard = () => {
                         <div className="game-icons">
                             <h4>Play Game And Get Discount</h4>
                             <div className="game-icon">
-                                <a href="http://192.168.1.25/Shooting%20Game/" target="_blank" rel="noopener noreferrer">
+                                <a href="http://192.168.1.5/Shooting%20Game/" target="_blank" rel="noopener noreferrer">
                                     <img src={gameicon1} alt="Game Icon 1" />
                                 </a>
                                 <img src={gameicon2} alt="Game Icon 2" />

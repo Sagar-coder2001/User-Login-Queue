@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import data from '../Data.json'
 import userimg from '../../assets/user.jpg'
@@ -38,14 +38,29 @@ const Login = () => {
 
   useEffect(() => {
 
-    const queryParams = new URLSearchParams(window.location.search);
+    const isLogged = JSON.parse(localStorage.getItem('userData'));
+    const hotelid = JSON.parse(localStorage.getItem('hotelid'));
+    const contact = JSON.parse(localStorage.getItem('contact'));
 
-    // Get the 'Filepath' parameter from the URL
-    const filepath = queryParams.get('HID');
 
-    setHotelid(filepath);
+    if(isLogged === 'true'){
+      navigate('/dashboard', { state: { hotelid, contactno: contact } });
+    }
+ 
 
-    console.log(filepath);
+
+      const queryParams = new URLSearchParams(window.location.search);
+
+      // Get the 'Filepath' parameter from the URL
+      const filepath = queryParams.get('HID');
+
+      setHotelid(filepath);
+
+      console.log(filepath);
+    
+
+
+
 
   }, [])
 
@@ -68,7 +83,7 @@ const Login = () => {
     try {
 
       // Sending the FormData to your API using fetch
-      const response = await fetch(`http://192.168.1.25/Queue/register.php?hotel_id=${hotelid}`, {
+      const response = await fetch(`http://192.168.1.5/Queue/register.php?hotel_id=${hotelid}`, {
         method: 'POST',
         body: formData,
       });
@@ -79,6 +94,9 @@ const Login = () => {
       if (result.Status === true) {
         setSubmited(true);
         navigate('/dashboard', { state: { hotelid, contactno: userdetails.contactno } });
+        localStorage.setItem('userData', JSON.stringify('true'));
+        localStorage.setItem('hotelid', JSON.stringify(hotelid));
+        localStorage.setItem('contact', JSON.stringify(userdetails.contactno));
       }
 
       if (result.Status === false) {
@@ -183,7 +201,7 @@ const Login = () => {
                       </div>
                       <div className='input-container text-start'>
                         <span className='gender'>Gender</span> <br />
-                        <select name="gender" value={userdetails.gender} style={{backgroundColor: 'grey'}} onChange={handleChange} className="form-control">
+                        <select name="gender" value={userdetails.gender} style={{ backgroundColor: 'grey' }} onChange={handleChange} className="form-control">
                           <option value="">Select Gender</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
@@ -193,7 +211,7 @@ const Login = () => {
                       </div>
                       <div className="input-container text-start">
                         <span className='gender'>Rooms</span> <br />
-                        <select name="room" value={userdetails.room} onChange={handleChange} style={{backgroundColor: 'grey'}} className="form-control">
+                        <select name="room" value={userdetails.room} onChange={handleChange} style={{ backgroundColor: 'grey' }} className="form-control">
                           <option value="">Select Room Type</option>
                           <option value="1">AC</option>
                           <option value="0">Non AC</option>
