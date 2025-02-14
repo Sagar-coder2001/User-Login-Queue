@@ -18,8 +18,8 @@ import thankanimation from '../../assets/Thank You.gif'
 
 const Dashboard = () => {
     const location = useLocation();
-    const hotelid = location.state?.hotelid; // Access the hotelid
-    const contactno = location.state?.contactno; // Access the contact number
+    const hotelid = location.state?.hotelid;
+    const contactno = location.state?.contactno;
 
     const [Queuemessage, setQueuemessage] = useState('');
     const [genderQueue, setGenderQueue] = useState([]); // To store genders for animation
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         console.log(hotelid);
-        const eventSource = new EventSource(`http://192.168.1.5/Queue/queue.php?contact=${contactno}&hotel_id=${hotelid}`);
+        const eventSource = new EventSource(`http://192.168.1.25/Queue/queue.php?contact=${contactno}&hotel_id=${hotelid}`);
 
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
@@ -89,21 +89,8 @@ const Dashboard = () => {
     }, [hotelid, contactno]); // Add dependencies to re-run effect when they change
 
 
-    // const renderQueueImages = () => {
-    //     let images = [];
 
-    //     for (let i = 0; i < queue; i++) {
-    //         const isLastImage = i === queue - 1; // Check if this is the last image
-
-    //         images.push(
-    //             <div key={i} className={`queue-item ${isLastImage ? 'highlighted' : ''}`}>
-    //                 <img src={isLastImage ? women : man} alt="Person in Queue" className="queue-image" />
-    //                 <p className="queue-text">{i + 1}<p>{isLastImage ? 'you' : ''}</p></p>
-    //             </div>
-    //         );
-    //     }
-    //     return images;
-    // };
+    
 
     return (
         <div>
@@ -113,7 +100,6 @@ const Dashboard = () => {
                     <div className="navigation">
                         <div className="sandtime">
                             <p><strong>Waiting Time : </strong> <span>{waitingtime}</span></p>
-
                         </div>
                         <div className="sandclock">
                             <img src={Queuemessage === "Please Visit To Receptionist." ? sandtimernew : sandtimer} alt="Sand Timer"
@@ -131,7 +117,7 @@ const Dashboard = () => {
                                     {
                                         thank ? (
                                             <div>
-                                               <img src={thankanimation} alt="" style={{ width: '200px' }} />
+                                                <img src={thankanimation} alt="" style={{ width: '200px' }} />
                                             </div>
                                         ) : (
                                             <div>
@@ -139,11 +125,14 @@ const Dashboard = () => {
                                             </div>
                                         )
                                     }
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                 
+
 
                     <div className="game-queue">
                         <div className="game-instruction">

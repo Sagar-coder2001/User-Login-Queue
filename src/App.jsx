@@ -13,6 +13,14 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
+      {/* <button id="install-button" style={{
+        display: 'none',
+        position: 'absolute',
+        top: 50,
+        left: 50
+      }}>
+        Add to Home Screen
+      </button> */}
     </>
   );
 }

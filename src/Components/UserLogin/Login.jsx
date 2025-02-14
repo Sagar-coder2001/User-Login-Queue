@@ -21,6 +21,8 @@ const Login = () => {
   const navigate = useNavigate(); // Initialize useNavigate for routing
   const [hotelid, setHotelid] = useState();
   const [showerr, setShowerr] = useState(false);
+  const [isPromptVisible, setIsPromptVisible] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
 
   const validateForm = () => {
     let formErrors = {};
@@ -37,28 +39,31 @@ const Login = () => {
   };
 
   useEffect(() => {
-
     const isLogged = JSON.parse(localStorage.getItem('userData'));
     const hotelid = JSON.parse(localStorage.getItem('hotelid'));
     const contact = JSON.parse(localStorage.getItem('contact'));
 
-
-    if(isLogged === 'true'){
+    if (isLogged === 'true') {
       navigate('/dashboard', { state: { hotelid, contactno: contact } });
     }
- 
 
 
-      const queryParams = new URLSearchParams(window.location.search);
 
-      // Get the 'Filepath' parameter from the URL
-      const filepath = queryParams.get('HID');
+    const queryParams = new URLSearchParams(window.location.search);
 
-      setHotelid(filepath);
+    // Get the 'Filepath' parameter from the URL
+    const filepath = queryParams.get('HID');
 
-      console.log(filepath);
-    
+    setHotelid(filepath);
 
+    // console.log(filepath);
+
+    // Listen for beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault(); // Prevent automatic prompt
+      setDeferredPrompt(e); // Save the event to trigger it later
+      setIsPromptVisible(true); // Show custom button
+    });
 
 
 
@@ -83,7 +88,7 @@ const Login = () => {
     try {
 
       // Sending the FormData to your API using fetch
-      const response = await fetch(`http://192.168.1.5/Queue/register.php?hotel_id=${hotelid}`, {
+      const response = await fetch(`http://192.168.1.25/Queue/register.php?hotel_id=${hotelid}`, {
         method: 'POST',
         body: formData,
       });
@@ -123,6 +128,26 @@ const Login = () => {
       [name]: value
     }));
   };
+
+  const handleAddToHomeScreen = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Show the A2HS prompt
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        setDeferredPrompt(null); // Clear the prompt event after use
+        setIsPromptVisible(false); // Hide the custom prompt button
+      });
+    }
+  };
+
+  const handleCancel = () => {
+    setIsPromptVisible(false)
+  };
+
 
   return (
     <div>
@@ -234,6 +259,29 @@ const Login = () => {
                 </div>
               </div>
           }
+          {isPromptVisible && (
+            <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Install this app for a better experience!</strong>
+            <div className='mt-2'>
+              <button
+                id="add-to-home-screen-btn"
+                type="button"
+                className="btn btn-primary me-2"
+                onClick={handleAddToHomeScreen}
+              >
+                Add to Home Screen
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          )}
         </div>
       </div>
     </div>

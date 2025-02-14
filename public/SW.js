@@ -51,7 +51,10 @@ let urlCache = [
     '/src/main.jsx?t=1736694765055',
     '/src/main.jsx?t=1736696572353',
     '/src/serviceworker.js?t=1736694909699',
-    '/public/manifest.json'
+    '/public/manifest.json',
+    '/dashboard',
+    '/Logo192.png',
+    
 ];
 
 // Install event: Cache critical resources
