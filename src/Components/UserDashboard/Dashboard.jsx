@@ -15,6 +15,7 @@ import gameicon6 from '../../assets/game icon 6.png';
 import animation from '../../assets/peoples.png'
 import calling from '../../assets/calling.gif'
 import thankanimation from '../../assets/Thank You.gif'
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
     const location = useLocation();
@@ -90,12 +91,16 @@ const Dashboard = () => {
 
 
 
-    
+
 
     return (
         <div>
             <Navbar />
-            <div className="dashboard-container">
+            <motion.div
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="dashboard-container">
                 <div className="dashboard">
                     <div className="navigation">
                         <div className="sandtime">
@@ -131,7 +136,7 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                 
+
 
 
                     <div className="game-queue">
@@ -159,7 +164,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };

@@ -1,4 +1,5 @@
-let CACHE_NAME = 'codePwa-v1';  // Version the cache for easier invalidation
+let CACHE_NAME = 'codePwa-v2';
+
 let urlCache = [
     '/',
     '/@react-refresh',
@@ -54,7 +55,6 @@ let urlCache = [
     '/public/manifest.json',
     '/dashboard',
     '/Logo192.png',
-    
 ];
 
 // Install event: Cache critical resources

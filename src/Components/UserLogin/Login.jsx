@@ -4,6 +4,7 @@ import { json, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import data from '../Data.json'
 import userimg from '../../assets/user.jpg'
+import { motion } from 'framer-motion';
 
 let hotelbg = `${data.hotelimg}`;
 
@@ -38,6 +39,16 @@ const Login = () => {
     return Object.keys(formErrors).length === 0;
   };
 
+  const time =  60 * 60 * 1000
+
+ useEffect(() => {
+    setTimeout(() => {
+      localStorage.removeItem('userData')
+      window.location.href('/')
+    }, time);
+  },[])
+
+
   useEffect(() => {
     const isLogged = JSON.parse(localStorage.getItem('userData'));
     const hotelid = JSON.parse(localStorage.getItem('hotelid'));
@@ -45,29 +56,23 @@ const Login = () => {
 
     if (isLogged === 'true') {
       navigate('/dashboard', { state: { hotelid, contactno: contact } });
-    }
-
-
-
+    } 
     const queryParams = new URLSearchParams(window.location.search);
 
     // Get the 'Filepath' parameter from the URL
     const filepath = queryParams.get('HID');
 
     setHotelid(filepath);
-
     // console.log(filepath);
-
     // Listen for beforeinstallprompt
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault(); // Prevent automatic prompt
       setDeferredPrompt(e); // Save the event to trigger it later
       setIsPromptVisible(true); // Show custom button
     });
-
-
-
   }, [])
+
+ 
 
   const saveDetails = async (e) => {
     e.preventDefault();
@@ -85,8 +90,8 @@ const Login = () => {
     formData.append('gender', userdetails.gender);
     formData.append('table_type', userdetails.room);
 
-    try {
 
+    try {
       // Sending the FormData to your API using fetch
       const response = await fetch(`http://192.168.1.25/Queue/register.php?hotel_id=${hotelid}`, {
         method: 'POST',
@@ -153,7 +158,11 @@ const Login = () => {
     <div>
       <div className="login-container">
         <Navbar />
-        <div className="container">
+        <motion.div
+       initial={{ opacity: 0}} 
+       animate={{ opacity: 1}}     
+       transition={{ duration: 0.5, ease: 'easeOut' }}
+         className="container">
           {
             showerr ? (
               <>
@@ -259,30 +268,39 @@ const Login = () => {
                 </div>
               </div>
           }
+          
           {isPromptVisible && (
-            <div className="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Install this app for a better experience!</strong>
+            <motion.div 
+            initial={{ opacity: 0}} 
+            animate={{opacity : 1 }}     
+            transition={{ duration: 0.8 }}
+            style={{
+              width:'96%',
+              maxWidth:'500px'
+            }}
+            className="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Install These app for better Experince</strong>
             <div className='mt-2'>
               <button
                 id="add-to-home-screen-btn"
                 type="button"
-                className="btn btn-primary me-2"
+                className="btn btn-success me-2"
                 onClick={handleAddToHomeScreen}
               >
                 Add to Home Screen
               </button>
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-danger"
                 onClick={handleCancel}
               >
                 Cancel
               </button>
             </div>
-          </div>
-
+          </motion.div>
           )}
-        </div>
+
+        </motion.div>
       </div>
     </div>
   );

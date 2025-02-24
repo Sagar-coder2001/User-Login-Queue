@@ -8,19 +8,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* Wrap the components in JSX */}
           <Route path='/' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
-      {/* <button id="install-button" style={{
-        display: 'none',
-        position: 'absolute',
-        top: 50,
-        left: 50
-      }}>
-        Add to Home Screen
-      </button> */}
     </>
   );
 }
